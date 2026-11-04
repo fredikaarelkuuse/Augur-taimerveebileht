@@ -1,4 +1,5 @@
 /**
+Kõik credit Geminile ja Raunole
  * Arvutab gregooriuse kalendri lihavõttepüha (ülestõusmispüha) kuupäeva.
  * Kasutab Meeus/Jones/Butcheri algoritmi.
  * 
