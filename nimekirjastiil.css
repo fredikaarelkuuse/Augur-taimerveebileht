@@ -14,7 +14,7 @@ h1 {
 }
 
 details {
-    border: 0.2% solid white;
+    border: 5px solid white;
     padding: 1%;
     margin: auto;
     background-color: rgba(169, 169, 169, 1.0);
