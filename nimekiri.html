@@ -2,90 +2,118 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Eesti Rahvakalendri kuupäevade nimekiri</title>
+        <link rel="stylesheet" href="nimekirjastiil.css">
+        <script src="liikuvadkuupaevad.js" defer></script>
+        <title>Eesti Rahvakalendri kuupäevad</title>
+        </head>
         <body>
-            <h1>Eesti Rahvakalendri kuupäevade nimekiri</h1>
+            <div>
+                <h1>Eesti Rahvakalendri kuupäevad</h1>
         
-                <ul>
-                    <li>Jaanuar
-                        1. jaanuar – näärid
-                        6. jaanuar – kolmekuningapäev
-                        7. jaanuar (ka 13. jaanuar) – nuudipäev ehk kanutipäev
-                        14. jaanuar – taliharjapäev
-                        17. jaanuar – tõnisepäev
-                        25. jaanuar – paavlipäev</li>
-                    <li>Küünlakuu
-                        2. veebruar – küünlapäev ehk pudrupäev
-                        9. veebruar – luuvalupäev
-                        22. veebruar – talvine peetripäev
-                        24. veebruar – talvine madisepäev</li>
-                    <li>Paastukuu, urbekuu
-                        1. märts – jevdokiapäev
-                        9. märts – sorokasveet ehk tsirgupäev
-                        12. märts – korjusepäev
-                        17. märts – alekseipäev
-                        17. märts – patrikupäev
-                        17. märts – käädripäev ehk ussiliikumise päev; püha Gertrudi mälestuspäev
-                        21. märts – pendipäev
-                        25. märts – maarjapäev ehk paastumaarjapäev, ka marjapunapäev</li>  
-                    <li> Jürikuu
-                        1. aprill – aprillipäev ehk naljapäev
-                        1. aprill – karjalaskepäev
-                        14. aprill – künnipäev
-                        23. aprill – jüripäev
-                        25. aprill – markusepäev </li>    
-                    <li>Lehekuu
-                        1. mai – volbripäev
-                        9. mai – kevadine nigulapäev
-                        18. mai – eerikupäev
-                        25. mai – urbanipäev</li>
-                    <li>Jaanikuu
-                        15. juuni – viidipäev
-                        24. juuni – jaanipäev
-                        27. juuni – seitsmemagajapäev
-                        29. juuni – suvine peetripäev</li>
-                    <li>Heinakuu
-                        2. juuli – heinamaarjapäev
-                        10. juuli – seitsmevennapäev
-                        22. juuli – madlipäev
-                        25. juuli – jaagupipäev
-                        26. juuli – annepäev
-                        29. juuli – olevipäev
-                    </li>       
-                    <li>Lõikuskuu
-                        1. august – makaveipäev
-                        10. august – lauritsapäev
-                        15. august – rukkimaarjapäev
-                        18. august – rollapäev
-                        19. august – paasapäev
-                        24. august – pärtlipäev
-                        29. august – ivanoskoroona</li>
-                    <li> Mihklikuu
-                        8. september – ussimaarjapäev
-                        21. september – sügisene madisepäev
-                        29. september – mihklipäev
-                    </li> 
-                    <li> Viinakuu
-                        14. oktoober – kolletamispäev
-                        26. oktoober (ka 31. oktoober) – midruskipäev
-                        28. oktoober – simunapäev</li>
-                    <l1>Talvekuu
-                        2. november – hingedepäev
-                        10. november – mardipäev
-                        25. november – kadripäev
-                        30. november – andresepäev
-                    </li>   
-                    <li>Jõulukuu
-                        6. detsember – nigulapäev
-                        13. detsember – luutsipäev
-                        21. detsember – toomapäev
-                        24. detsember – jõulud
-                        26. detsember – tabanipäev ehk tehvanusepäev ehk tehvanipäev
-                        28. detsember – süütalastepäev
-                        31. detsember – näärid</li>
+                    <ul>
+                        <details data-month="1">
+                            <summary>Jaanuar: </summary>
+                                <p><li>1. jaanuar – näärid</li>
+                                <li>6. jaanuar – kolmekuningapäev</li>
+                                <li>7. jaanuar (ka 13. jaanuar) – nuudipäev ehk kanutipäev</li>
+                                <li>14. jaanuar – taliharjapäev</li>
+                                <li>17. jaanuar – tõnisepäev</li>
+                                <li>25. jaanuar – paavlipäev</li></p>
+                        </details>
+                        <details data-month="2">
+                            <summary>Küünlakuu, veebruar</summary>
+                               <li>2. veebruar – küünlapäev ehk pudrupäev</li>
+                               <li>9. veebruar – luuvalupäev</li>
+                               <li>22. veebruar – talvine peetripäev</li>
+                               <li>24. veebruar – talvine madisepäev</li>
+                            </details>
+                            <details data-month="3">
+                            <summary>Paastukuu, urbekuu, märts</summary>
+                                <li>1. märts – jevdokiapäev</li>
+                                <li>9. märts – sorokasveet ehk tsirgupäev</li>
+                                <li>12. märts– korjusepäev</li>
+                                <li>17. märts – alekseipäev</li>
+                                <li>17. märts – patrikupäev</li>
+                                <li>17. märts – käädripäev ehk ussiliikumise päev; püha Gertrudi mälestuspäev</li>
+                                <li>21. märts – pendipäev</li>
+                                <li>25. märts – maarjapäev ehk paastumaarjapäev, ka marjapunapäev</li> 
+                            </details>
+                            <details data-month="4">
+                                <summary>Jürikuu, aprill</summary>
+                                    <li>1. aprill – aprillipäev ehk naljapäev</li>
+                                    <li>1. aprill – karjalaskepäev</li>
+                                    <li>14. aprill – künnipäev</li>
+                                    <li>23. aprill – jüripäev</li>
+                                     <li>25. aprill – markusepäev</li>
+                            </details>
+                    
+                            <details data-month="5">
+                                <summary>Lehekuu, mai</summary>
+                                    <li>mai – volbripäev</li> 
+                                    <li>9. mai – kevadine nigulapäev</li>
+                                    <li>18. mai – eerikupäev</li>
+                                    <li>25. mai – urbanipäev</li>
+                            </details>
+                    
+                            <details data-month="6">
+                                <summary>Jaanikuu, juuni</summary>
+                                    <li>15. juuni – viidipäev</li>
+                                    <li>24. juuni – jaanipäev</li>
+                                    <li>27. juuni – seitsmemagajapäev</li>
+                                    <li>29. juuni – suvine peetripäev</li>
+                            </details>
+                            <details data-month="7"> 
+                                <summary>Heinakuu, juuli</summary>
+                                    <li>2. juuli – heinamaarjapäev</li>
+                                    <li>10. juuli – seitsmevennapäev</li>
+                                    <li>22. juuli – madlipäev</li>
+                                    <li>25. juuli – jaagupipäev</li>
+                                    <li>26. juuli – annepäev</li>
+                                    <li>29. juuli – olevipäev</li>
+                            </details>   
+                        
+                            <details data-month="8">
+                                <summary>Lõikuskuu, august</summary>
+                                    <li>1. august – makaveipäev</li>
+                                    <li>10. august – lauritsapäev</li>
+                                    <li>15. august – rukkimaarjapäev</li>
+                                    <li>18. august – rollapäev</li>
+                                    <li>19. august – paasapäev</li>
+                                    <li>24. august – pärtlipäev</li>
+                                    <li>29. august – ivanoskoroona</li>
+                            </details>
+                            <details data-month="9"> 
+                                <summary>Mihklikuu, september</summary>
+                                    <li>8. september – ussimaarjapäev</li>
+                                    <li>21. september – sügisene madisepäev</li>
+                                    <li>29. september – mihklipäev</li>
+                            </details> 
+                            <details data-month="10">
+                                <summary>Viinakuu, oktoober</summary>
+                                    <li>14. oktoober – kolletamispäev</li>
+                                    <li>26. oktoober (ka 31. oktoober) – midruskipäev</li>
+                                    <li>28. oktoober – simunapäev</li>
+                            </details>
+                            <details data-month="11">
+                                <summary>Talvekuu, november</summary>
+                                    <li>2. november – hingedepäev</li>
+                                    <li>10. november – mardipäev</li>
+                                    <li>25. november – kadripäev</li>
+                                    <li>30. november – andresepäev</li>
+                            </details>
+                            <details data-month="12">
+                                <summary>Jõulukuu, detsember</summary>
+                                    <li>6. detsember – nigulapäev</li>
+                                    <li>13. detsember – luutsipäev</li>
+                                    <li>21. detsember – toomapäev</li>
+                                    <li>24. detsember – jõulud</li>
+                                    <li>26. detsember – tabanipäev ehk tehvanusepäev ehk tehvanipäev</li>
+                                    <li>28. detsember – süütalastepäev</li>
+                                    <li>31. detsember – näärid</li>
                 </ul>
-            </body>
-    </head>
+            </div>
+        </body>
+    
 </html>
 
         

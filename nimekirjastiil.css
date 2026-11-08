@@ -1,0 +1,24 @@
+body { 
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Estonian_Open_Air_Museum.001.JPG?utm_source=et.wikipedia.org&utm_campaign=index&utm_content=original");  
+    background-size: stretch;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+
+}
+
+h1 { 
+    color: lightgreen; ;
+    text-align: center;
+    background-color: rgba(169, 169, 169, 0.5);
+}
+
+details {
+    border: 0.2% solid white;
+    padding: 1%;
+    margin: auto;
+    background-color: rgba(169, 169, 169, 1.0);
+    border: 2px solid white;
+    border-radius: 6px;
+}
+

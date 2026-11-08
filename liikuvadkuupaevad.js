@@ -98,12 +98,44 @@ function getEstonianMovingHolidays(year) {
   }));
 }
 
-// Kasutamise näide:
-const aasta = 2026;
-const puhad = getEstonianMovingHolidays(aasta);
+function displayEstonianMovingHolidays(year) {
+  const holidays = getEstonianMovingHolidays(year);
+  const dateFormatter = new Intl.DateTimeFormat('et-EE', {
+    day: 'numeric',
+    month: 'long',
+    timeZone: 'UTC'
+  });
 
-console.log(`${aasta.toString()}. aasta liikuvad pühad:`);
-console.table(puhad);
+  holidays.forEach(holiday => {
+    const [holidayYear, month] = holiday.date.split('-');
+    const monthSection = document.querySelector(
+      `details[data-month="${Number(month)}"]`
+    );
+
+    if (!monthSection) {
+      return;
+    }
+
+    let list = monthSection.querySelector('.moving-holidays');
+    if (!list) {
+      list = document.createElement('ul');
+      list.className = 'moving-holidays';
+      monthSection.appendChild(list);
+    }
+
+    const item = document.createElement('li');
+    item.textContent = `${holiday.name} — ${dateFormatter.format(
+      new Date(`${holiday.date}T00:00:00Z`)
+    )}`;
+    list.appendChild(item);
+  });
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    displayEstonianMovingHolidays(new Date().getFullYear());
+  });
+}
 
 // Mooduli eksport Node.js keskkonnas
 if (typeof module !== 'undefined' && module.exports) {
