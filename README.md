@@ -1,1 +1,2 @@
-# Augur-taimerveebileht
+# Augur-pühadetaimer-veebileht
+Siin repositooriumis hoiab grupp Augur oma SE veebilehe projekti faile. Veebilehe põhieesmärk on teavitada külastajaid lähenevast pühast taimeri abil ning anda nõu, kuidas selleks valmistuda. Samuti on võimalik kõigi pühade kohta lähemalt lugeda.
