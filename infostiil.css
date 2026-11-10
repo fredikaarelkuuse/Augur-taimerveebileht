@@ -1,0 +1,84 @@
+body { 
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Estonian_Open_Air_Museum.001.JPG?utm_source=et.wikipedia.org&utm_campaign=index&utm_content=original");  
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+
+.header-image {
+    width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+    border-radius: 4px;
+}
+
+
+h1 { 
+    color: lightgreen;
+    text-align: center;
+    background-color: rgba(169, 169, 169, 0.5);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 0;
+}
+
+
+.kuu {
+    margin-bottom: 40px;
+}
+
+.kuu h2 {
+    color: #4fff728f;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 10px 15px;
+    border-left: 5px solid lightgreen;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+
+.kastid {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+
+.pühad {
+    background-color: rgba(169, 169, 169, 0.982);
+    border: 2px solid white;
+    border-radius: 6px;
+    padding: 15px;
+    width: 300px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+}
+
+.pühad h3 {
+    color: black;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+.pühad h4 {
+    color: #ffffaa;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.pühad p {
+    line-height: 1.5;
+    margin: 5px 0;
+    font-size: 0.95rem;
+}
