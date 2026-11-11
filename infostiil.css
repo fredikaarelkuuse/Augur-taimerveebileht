@@ -10,7 +10,6 @@ body {
     padding: 20px;
 }
 
-
 .header-image {
     width: 200px;
     height: auto;
@@ -18,7 +17,6 @@ body {
     margin: 0 auto 15px auto;
     border-radius: 4px;
 }
-
 
 h1 { 
     color: lightgreen;
@@ -29,34 +27,71 @@ h1 {
     margin-top: 0;
 }
 
+/* Container holding all months left-to-right in a grid */
+main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 boxes side-by-side */
+    gap: 20px;
+    align-items: start;
+}
 
+/* Month box styling */
 .kuu {
-    margin-bottom: 40px;
+    margin-bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.kuu summary {
+    cursor: pointer;
+    list-style: none; /* Removes default arrow indicator */
+}
+
+.kuu summary::-webkit-details-marker {
+    display: none;
 }
 
 .kuu h2 {
-    color: #4fff728f;
-    background-color: rgba(0, 0, 0, 0.6);
+    color: #4fff72;
+    background-color: rgba(0, 0, 0, 0.7);
     padding: 10px 15px;
     border-left: 5px solid lightgreen;
-    border-radius: 4px;
-    margin-bottom: 20px;
+    border-radius: 4px 4px 0 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.2rem;
 }
 
+/* Adds a small toggle icon on the right side of month headers */
+.kuu summary h2::after {
+    content: "+";
+    color: lightgreen;
+    font-weight: bold;
+}
 
+.kuu[open] summary h2::after {
+    content: "−";
+}
+
+/* Inner holidays container when opened */
 .kastid {
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
 }
 
-
+/* Holiday card styling */
 .pühad {
     background-color: rgba(169, 169, 169, 0.982);
     border: 2px solid white;
     border-radius: 6px;
-    padding: 15px;
-    width: 300px;
+    padding: 12px;
+    width: 100%; /* Takes full width of month column */
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     color: #ffffff;
@@ -65,20 +100,33 @@ h1 {
 .pühad h3 {
     color: black;
     margin-top: 0;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 5px;
 }
 
 .pühad h4 {
     color: #ffffaa;
-    margin-top: 15px;
+    margin-top: 10px;
     margin-bottom: 5px;
 }
 
 .pühad p {
-    line-height: 1.5;
+    line-height: 1.4;
     margin: 5px 0;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+}
+
+/* Responsive adjustments for tablets and mobile devices */
+@media (max-width: 1024px) {
+    main {
+        grid-template-columns: repeat(2, 1fr); /* 2 boxes per row */
+    }
+}
+
+@media (max-width: 650px) {
+    main {
+        grid-template-columns: 1fr; /* 1 box per row on mobile */
+    }
 }
