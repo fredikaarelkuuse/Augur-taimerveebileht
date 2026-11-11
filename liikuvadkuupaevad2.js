@@ -130,7 +130,8 @@ if (typeof document !== 'undefined') {
     yearSelect.value = String(firstYear);
     updateMovingHolidayDates(firstYear);
     yearSelect.addEventListener('change', () => {
-      updateMovingHolidayDates(Number(yearSelect.value));
+      const year = Number(yearSelect.value);
+      updateMovingHolidayDates(year);
     });
   });
 }
