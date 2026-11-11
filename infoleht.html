@@ -5,11 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pühade kirjeldused</title>
     <link rel="stylesheet" href="infostiil.css">
+    <script src="liikuvadkuupaevad2.js" defer></script>
 </head>
 <body>
 
     <header>
         <h1>Pühade kirjeldused</h1>
+        <div class="year-selector">
+            <label for="year-select">Vali aasta:</label>
+            <select id="year-select" name="year">
+                <option value="2026">2026</option>
+            </select>
+        </div>
     </header>
 
     <main>
@@ -96,12 +103,12 @@
                 </div>
 
                 <div class="pühad">
-                    <h3>Vastlapäev (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Vastlapäev">Vastlapäev (liikuv püha)</h3>
                     <p>Vastlapäev on liikuv püha enne suure paastu algust. Kommeteks on linasõidu tagamiseks kelgutamine, vastlakuklite söömine ja hernesupi keetmine.</p>
                 </div>
 
                 <div class="pühad">
-                    <h3>Tuhkapäev (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Tuhkapäev">Tuhkapäev (liikuv püha)</h3>
                     <p>Tuhkapäev järgneb vahetult vastlapäevale ning tähistab 40-päevase paastuaja algust. Vanarahvas pühkis sel päeval ahjust tuhka ja viis seda põllule väetiseks.</p>
                 </div>
 
@@ -163,17 +170,17 @@
                 </div>
 
                 <div class="pühad">
-                    <h3>Lihavõtted ehk munadepühad (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Lihavõtted ehk munadepühad">Lihavõtted ehk munadepühad (liikuv püha)</h3>
                     <p>Kevadine rõõmupüha, mis sümboliseerib elujõu taassündi. Kommeteks on munade värvimine, koksimine, kiikumine ja kevadiste toitude nautimine.</p>
                 </div>
 
                 <div class="pühad">
-                    <h3>Urbepäev ehk palmipuudepüha (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Urbepäev ehk palmipuudepüha">Urbepäev ehk palmipuudepüha (liikuv püha)</h3>
                     <p>Nädal enne lihavõtteid tähistatav püha. Kombeks oli varahommikul teisi pajuvitega ehk urbadega "urgitseda", soovides sellega tervist ja hääd õnne.</p>
                 </div>
 
                 <div class="pühad">
-                    <h3>Suur reede (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Suur Reede">Suur reede (liikuv püha)</h3>
                     <p>Vaikne ja tõsine kiriklik püha enne lihavõtteid. Sel päeval pidi valitsema rahu, mürarikkad tööd ja pidustused olid keelatud.</p>
                 </div>
 
@@ -243,7 +250,7 @@
                 </div>
 
                 <div class="pühad">
-                    <h3>Suvistepühad ehk nelipühad (liikuv püha)</h3>
+                    <h3 data-moving-holiday="Suvistepühad ehk nelipühad">Suvistepühad ehk nelipühad (liikuv püha)</h3>
                     <p>Kevadine rõõmupüha looduse tärkamise tähistamiseks, mil tubasid eamiti kaskedega ning värviti mune.</p>
                 </div>
 

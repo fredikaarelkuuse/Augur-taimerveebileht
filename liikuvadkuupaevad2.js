@@ -88,49 +88,50 @@ function getEstonianMovingHolidays(year) {
   }));
 }
 
-/**
- * Kuva liikuvad pühad HTML-is vastava kuu all.
- */
-function displayEstonianMovingHolidays(year) {
+function updateMovingHolidayDates(year) {
   const holidays = getEstonianMovingHolidays(year);
   const dateFormatter = new Intl.DateTimeFormat('et-EE', {
     day: 'numeric',
     month: 'long',
+    year: 'numeric',
     timeZone: 'UTC'
   });
 
-  holidays.forEach(holiday => {
-    // Leiame kuu numbri (1 - 12)
-    const monthNumber = holiday.rawDate.getUTCMonth() + 1;
-    
-    // Otsime HTML-ist details elemendi data-month atribuudi järgi
-    const monthSection = document.querySelector(`details[data-month="${monthNumber}"]`);
+  const holidaysByName = new Map(
+    holidays.map(holiday => [holiday.name, holiday])
+  );
 
-    if (!monthSection) return;
-
-    const kastid = monthSection.querySelector('.kastid');
-    if (!kastid) return;
-
-    // Loome uue püha div-elemendi
-    const pyhaDiv = document.createElement('div');
-    pyhaDiv.className = 'pühad';
-
-    const formattedDate = dateFormatter.format(holiday.rawDate);
-
-    pyhaDiv.innerHTML = `
-      <h3>${holiday.name} - ${formattedDate} (liikuv püha)</h3>
-      <p>${holiday.description}</p>
-    `;
-
-    // Lisame püha kaardi kuu sisse
-    kastid.appendChild(pyhaDiv);
+  document.querySelectorAll('[data-moving-holiday]').forEach(heading => {
+    const holiday = holidaysByName.get(heading.dataset.movingHoliday);
+    if (holiday) {
+      heading.textContent = `${holiday.name} — ${dateFormatter.format(holiday.rawDate)} (liikuv püha)`;
+    }
   });
 }
 
-// Käivitatakse siis, kui HTML leht on laetud
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
-    displayEstonianMovingHolidays(new Date().getFullYear());
+    const yearSelect = document.getElementById('year-select');
+    if (!yearSelect) {
+      return;
+    }
+
+    const firstYear = 2026;
+    const lastYear = 2099;
+    yearSelect.replaceChildren();
+
+    for (let year = firstYear; year <= lastYear; year += 1) {
+      const option = document.createElement('option');
+      option.value = String(year);
+      option.textContent = String(year);
+      yearSelect.appendChild(option);
+    }
+
+    yearSelect.value = String(firstYear);
+    updateMovingHolidayDates(firstYear);
+    yearSelect.addEventListener('change', () => {
+      updateMovingHolidayDates(Number(yearSelect.value));
+    });
   });
 }
 
