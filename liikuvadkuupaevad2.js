@@ -137,3 +137,4 @@ if (typeof document !== 'undefined') {
 // Mooduli eksport Node.js keskkonnas (vajadusel)
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { getEasterDate, getEstonianMovingHolidays };
+}
