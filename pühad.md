@@ -1,5 +1,17 @@
 ### Siia tuleb pühade nimekiri: (liikuvad pühad on eemal hetkel)
 
+Liikuvad pühad:
+Vastlapäev
+Palmipuudepüha
+Suur Neljapäev
+Suur reede
+Vaikne laupäev
+Ülestõusmispühade 1. püha (lihavõtted)
+Ülestõusmispühade 2. püha
+Taevaminemispühad
+Nelipühade 1. Püha
+
+
 Jaanuar
 
     Näärikuu

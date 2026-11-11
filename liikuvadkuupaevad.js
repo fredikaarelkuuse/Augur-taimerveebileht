@@ -1,5 +1,5 @@
 /**
-Kõik credit Geminile ja Raunole
+Kõik credit Geminile (vibecode final boss :D)
  * Arvutab gregooriuse kalendri lihavõttepüha (ülestõusmispüha) kuupäeva.
  * Kasutab Meeus/Jones/Butcheri algoritmi.
  * 
