@@ -133,8 +133,8 @@ function displayEstonianMovingHolidays(year) {
     list.appendChild(item);
   });
 }
-/* Leiab nädalapäeva ja riigipüha olemuse ning lisab need HTML-i. */
-function addWeekdaysAndPublicHolidayStatus(year) {
+/* Arvutab valitud aasta nädalapäevad ja lisab kirjele vaba päeva märke. */
+function lisaNädalaPäevadJaVabapäevaMärge(year) {
   const monthNumbers = {
     jaanuar: 1,
     veebruar: 2,
@@ -216,9 +216,10 @@ function addWeekdaysAndPublicHolidayStatus(year) {
   }
 }
 
-function renderCalendar(year) {
+/* Uuendab liikuvad pühad ja kogu kalendri aastaandmed. */
+function kuvaKalender(year) {
   displayEstonianMovingHolidays(year);
-  addWeekdaysAndPublicHolidayStatus(year);
+  lisaNädalaPäevadJaVabapäevaMärge(year);
 }
 
 // Mooduli eksport Node.js keskkonnas
