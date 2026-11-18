@@ -120,4 +120,3 @@ Detsember
     26. detsember – tabanipäev ehk tehvanusepäev ehk tehvanipäev
     28. detsember – süütalastepäev
     31. detsember – näärid
-
