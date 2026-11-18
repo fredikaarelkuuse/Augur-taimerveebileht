@@ -1,3 +1,45 @@
+body { 
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Estonian_Open_Air_Museum.001.JPG?utm_source=et.wikipedia.org&utm_campaign=index&utm_content=original");  
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { 
+    color: lightgreen;
+    text-align: center;
+    background-color: rgba(169, 169, 169, 0.5);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 0;
+}
+
+header {
+    position: relative;
+    padding-top: 48px;
+}
+
+.tagasi-nupp {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+}
+
+.tagasi-nupp:hover,
+.tagasi-nupp:focus-visible {
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
 main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
