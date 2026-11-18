@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="et">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="nimekirjastiil.css">
@@ -9,11 +9,16 @@
         </head>
         <body>
             <div>
-                <h1>Eesti Rahvakalendri kuupäevad</h1>
+                <form id="calendar-year-form">
+                    <label for="calendar-year-input">Vali aasta 1000 ja 9999 vahel:</label>
+                    <input id="calendar-year-input" name="year" type="number" min="1000" max="9999" step="1" required>
+                    <button class= "aastanupp" type="submit">Näita</button>
+                </form>
+                <h1>Eesti Rahvakalendri kuupäevad <span id="calendar-year"></span></h1>
         
                     
                         <details data-month="1" class="kuu">
-                            <summary><h3>Näärikuu, Jaanuar: </h3></summary>
+                            <summary><h3>Näärikuu, jaanuar: </h3></summary>
                             <ul>
                                 <li>Näärid – 1. jaanuar</li>
                                 <li>Kolmekuningapäev – 6. jaanuar</li>
@@ -58,7 +63,7 @@
                         <details data-month="5" class="kuu">
                             <summary><h3>Lehekuu, mai</h3></summary>
                             <ul>
-                                <li>Volbripäev – mai</li>
+                                <li>Volbripäev – 1. mai</li>
                                 <li>Kevadine nigulapäev – 9. mai</li>
                                 <li>Eerikupäev – 18. mai</li>
                                 <li>Urbanipäev – 25. mai</li>
@@ -69,6 +74,7 @@
                             <summary><h3>Jaanikuu, juuni</h3></summary>
                             <ul>
                                 <li>Viidipäev – 15. juuni</li>
+                                <li>Võidupüha – 23. juuni</li>
                                 <li>Jaanipäev – 24. juuni</li>
                                 <li>Seitsmemagajapäev – 27. juuni</li>
                                 <li>Suvine peetripäev – 29. juuni</li>
@@ -94,6 +100,7 @@
                                 <li>Rukkimaarjapäev – 15. august</li>
                                 <li>Rollapäev – 18. august</li>
                                 <li>Paasapäev – 19. august</li>
+                                <li>Taasiseseisvumispäev – 20. august</li>
                                 <li>Pärtlipäev – 24. august</li>
                                 <li>Ivanoskoroona – 29. august</li>
                             </ul>
@@ -129,7 +136,8 @@
                                 <li>Nigulapäev – 6. detsember</li>
                                 <li>Luutsipäev – 13. detsember</li>
                                 <li>Toomapäev – 21. detsember</li>
-                                <li>Jõulud – 24. detsember</li>
+                                <li>Jõululaupäev – 24. detsember</li>
+                                <li>Esimene jõulupüha – 25. detsember</li>
                                 <li>Tabanipäev ehk tehvanusepäev ehk tehvanipäev – 26. detsember</li>
                                 <li>Süütalastepäev – 28. detsember</li>
                                 <li>Näärid – 31. detsember</li>
