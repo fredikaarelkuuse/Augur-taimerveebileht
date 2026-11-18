@@ -99,6 +99,8 @@ function getEstonianMovingHolidays(year) {
 }
 
 function displayEstonianMovingHolidays(year) {
+  document.querySelectorAll('.moving-holidays').forEach(list => list.remove());
+
   const holidays = getEstonianMovingHolidays(year);
   const dateFormatter = new Intl.DateTimeFormat('et-EE', {
     day: 'numeric',
@@ -124,17 +126,99 @@ function displayEstonianMovingHolidays(year) {
     }
 
     const item = document.createElement('li');
+    item.dataset.date = holiday.date;
     item.textContent = `${holiday.name} — ${dateFormatter.format(
       new Date(`${holiday.date}T00:00:00Z`)
     )}`;
     list.appendChild(item);
   });
 }
-
-if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
-    displayEstonianMovingHolidays(new Date().getFullYear());
+/* Leiab nädalapäeva ja riigipüha olemuse ning lisab need HTML-i. */
+function addWeekdaysAndPublicHolidayStatus(year) {
+  const monthNumbers = {
+    jaanuar: 1,
+    veebruar: 2,
+    märts: 3,
+    aprill: 4,
+    mai: 5,
+    juuni: 6,
+    juuli: 7,
+    august: 8,
+    september: 9,
+    oktoober: 10,
+    november: 11,
+    detsember: 12
+  };
+  const publicHolidayDates = new Set([
+    `${year}-01-01`,
+    `${year}-02-24`,
+    `${year}-05-01`,
+    `${year}-06-23`,
+    `${year}-06-24`,
+    `${year}-08-20`,
+    `${year}-12-24`,
+    `${year}-12-25`,
+    `${year}-12-26`,
+    ...getEstonianMovingHolidays(year)
+      .filter(holiday => holiday.isOfficialPublicHoliday)
+      .map(holiday => holiday.date)
+  ]);
+  const weekdayFormatter = new Intl.DateTimeFormat('et-EE', {
+    weekday: 'long',
+    timeZone: 'UTC'
   });
+  const datePattern = /(\d{1,2})\.\s*(jaanuar|veebruar|märts|aprill|mai|juuni|juuli|august|september|oktoober|november|detsember)/gi;
+
+  document.querySelectorAll('details[data-month] li').forEach(item => {
+    const originalText = item.dataset.calendarText || item.textContent;
+    item.dataset.calendarText = originalText;
+
+    const dates = item.dataset.date
+      ? [item.dataset.date]
+      : [...originalText.matchAll(datePattern)].map(match => {
+          const month = monthNumbers[match[2].toLocaleLowerCase('et-EE')];
+          return `${year}-${String(month).padStart(2, '0')}-${String(match[1]).padStart(2, '0')}`;
+        });
+
+    if (dates.length === 0) {
+      return;
+    }
+
+    const weekdayLabels = dates.map(date => {
+      const [, month, day] = date.match(/^\d{4}-(\d{2})-(\d{2})$/);
+      const label = weekdayFormatter.format(new Date(`${date}T00:00:00Z`));
+      const dateLabel = `${Number(day)}. ${Object.keys(monthNumbers).find(
+        name => monthNumbers[name] === Number(month)
+      )}`;
+      return dates.length > 1 ? `${dateLabel}: ${label}` : label;
+    });
+    const isPublicHoliday = dates.some(date => publicHolidayDates.has(date));
+    const holidayName = document.createElement('span');
+    holidayName.className = 'holiday-name';
+    holidayName.textContent = originalText;
+
+    const weekday = document.createElement('span');
+    weekday.className = 'weekday';
+    weekday.textContent = weekdayLabels.join('; ');
+
+    const status = document.createElement('span');
+    status.className = 'holiday-status';
+    if (isPublicHoliday) {
+      status.textContent = 'Riigipüha – vaba päev';
+    }
+
+    item.replaceChildren(holidayName, weekday, status);
+  });
+
+  const yearLabel = document.getElementById('calendar-year');
+  if (yearLabel) {
+    yearLabel.textContent = `(${year})`;
+  }
+}
+
+function renderCalendar(year) {
+  displayEstonianMovingHolidays(year);
+  addWeekdaysAndPublicHolidayStatus(year);
 }
 
 // Mooduli eksport Node.js keskkonnas

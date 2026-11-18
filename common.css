@@ -1,0 +1,29 @@
+* {
+    box-sizing: border-box;
+}
+
+/* Foto taustaga lehtede ühised põhistiilid. */
+body.photo-page {
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Estonian_Open_Air_Museum.001.JPG?utm_source=et.wikipedia.org&utm_campaign=index&utm_content=original");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+/* Infolehe pealkirja ühine välimus. */
+body.info-page h1 {
+    color: lightgreen;
+    background-color: rgba(169, 169, 169, 0.5);
+    padding: 15px;
+    border-radius: 6px;
+    margin-top: 0;
+}
