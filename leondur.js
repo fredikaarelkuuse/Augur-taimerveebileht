@@ -3,6 +3,7 @@ Loenduri baaskood pärineb W3Schools õpetusest.
 Pealkiri: "How to create a Countdown Timer"
 Allikas: https://www.w3schools.com/howto/howto_js_countdown.asp
 */
+import { getEstonianMovingHolidays } from './liikuvadkuupaevad.js';
 
 async function kaivitaloendur() {
 
@@ -25,6 +26,7 @@ async function kaivitaloendur() {
     // Teeb teksti ridadeks lahti
     .split("\n")
 
+  // Käib iga rea läbi, kus on uus püha ja kuupäev
   for (let rida of read) {
 
     // Teeb rea pooleks ja eraldab nime ja kuupäeva
@@ -32,6 +34,7 @@ async function kaivitaloendur() {
     // Lisab kuupäevale ka aasta, et see oleks täielik
     taielik_kuupaev = see_aasta + "-" + kuupaev.trim();
     lahim_pyha = new Date(taielik_kuupaev).getTime();
+    // Võimaldab selle hiljem välja kutsuda
     console.log(taielik_kuupaev, pyha);
     
     // Kui lähim püha ei ole minevikus, lõhutakse tsükkel
@@ -43,26 +46,26 @@ async function kaivitaloendur() {
     }
   }
   document.getElementById("pyhanimi").innerHTML = suur_esitaht
-  // Update the count down every 1 second
+  // Värskendab kella iga natukese aja tagant
   let x = setInterval(function() {
     
     // Värskendab pidevalt aega
     praegu = new Date()
-    // Find the distance between now and the count down date
+    // Vaatab palju aega selle pühani on
     let vahe = lahim_pyha - praegu;
-    // If the count down is over, write some text 
+    // Kui püha on käes jooksutab põhi funktsiooni uuesti
     if (vahe < 0) {
       clearInterval(x);
       kaivitaloendur();
     }
       
-    // Time calculations for days, hours, minutes and seconds
+    // Arvutused päevad, tundide, minutite ja sekundite jaoks
     let days = Math.floor(vahe / (1000 * 60 * 60 * 24));
     let hours = Math.floor((vahe % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((vahe % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((vahe % (1000 * 60)) / 1000);
       
-    // Output the result in an element with id="taimer"
+    // Väljastab tulemuse elemendina mille id="taimer"
     document.getElementById("taimer").innerHTML = days + "p " + hours + "t "
     + minutes + "m " + seconds + "s";
   }, 37); //Taimeri väärtust tuleb muuta

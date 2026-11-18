@@ -225,3 +225,5 @@ function renderCalendar(year) {
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { getEasterDate, getEstonianMovingHolidays };
 }
+
+export { getEstonianMovingHolidays };
