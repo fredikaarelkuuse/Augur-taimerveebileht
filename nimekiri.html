@@ -6,15 +6,20 @@
         <link rel="stylesheet" href="common.css">
         <link rel="stylesheet" href="nimekirjastiil.css">
         <script src="liikuvadkuupaevad.js" defer></script>
+        <script src="aastavalik.js" defer></script>
         <title>Eesti Rahvakalendri kuupäevad</title>
         </head>
         <body class="photo-page">
             <div>
-                <form id="calendar-year-form">
-                    <label for="calendar-year-input">Vali aasta 1000 ja 9999 vahel:</label>
-                    <input id="calendar-year-input" name="year" type="number" min="1000" max="9999" step="1" required>
-                    <button class= "aastanupp" type="submit">Näita</button>
-                </form>
+                <a class="home-link" href="avaleht.html">&lt; -- tagasi avalehele</a>
+                <div id="calendar-year-form">
+                    <label for="calendar-year-input">Vali aasta:</label>
+                    <div class="year-picker">
+                        <input id="calendar-year-input" name="year" type="number" min="1000" max="9999" step="1" required>
+                        <button id="year-list-toggle" type="button" aria-label="Ava aastate loend" aria-expanded="false" aria-controls="calendar-year-options">▼</button>
+                        <select id="calendar-year-options" size="8" aria-label="Vali aasta loend" hidden></select>
+                    </div>
+                </div>
                 <h1>Eesti Rahvakalendri kuupäevad <span id="calendar-year"></span></h1>
         
                     

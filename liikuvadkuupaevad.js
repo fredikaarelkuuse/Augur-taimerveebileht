@@ -221,30 +221,6 @@ function renderCalendar(year) {
   addWeekdaysAndPublicHolidayStatus(year);
 }
 
-if (typeof document !== 'undefined') {
-  document.addEventListener('DOMContentLoaded', () => {
-    const yearInput = document.getElementById('calendar-year-input');
-    const yearForm = document.getElementById('calendar-year-form');
-    const currentYear = new Date().getFullYear();
-
-    if (yearInput instanceof HTMLInputElement && yearForm instanceof HTMLFormElement) {
-      yearInput.value = String(currentYear);
-      renderCalendar(currentYear);
-
-      yearForm.addEventListener('submit', event => {
-        event.preventDefault();
-        if (!yearForm.reportValidity()) {
-          return;
-        }
-
-        renderCalendar(Number(yearInput.value));
-      });
-    } else {
-      renderCalendar(currentYear);
-    }
-  });
-}
-
 // Mooduli eksport Node.js keskkonnas
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { getEasterDate, getEstonianMovingHolidays };
