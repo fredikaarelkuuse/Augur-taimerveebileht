@@ -69,9 +69,24 @@ function getEstonianMovingHolidays(year) {
       date: addDays(easter, -2)
     },
     {
+      name: 'Vaikne Laupäev',
+      description: 'Lihavõttepühade eelne vaikne päev, mil valmistuti pühade tähistamiseks.',
+      date: addDays(easter, -1)
+    },
+    {
       name: 'Lihavõtted ehk munadepühad',
       description: 'Kevadine rõõmupüha, mis sümboliseerib elujõu taassündi. Kommeteks on munade värvimine, koksimine, kiikumine ja kevadiste toitude nautimine.',
       date: addDays(easter, 0)
+    },
+    {
+      name: 'Ülestõusmispühade 2. püha',
+      description: 'Lihavõttepühade teine päev, mil jätkatakse kevadise rõõmupüha tähistamist.',
+      date: addDays(easter, 1)
+    },
+    {
+      name: 'Taevaminemispühad',
+      description: 'Kristlik püha, mida tähistatakse 40 päeva pärast lihavõtteid.',
+      date: addDays(easter, 39)
     },
     {
       name: 'Suvistepühad ehk nelipühad',
@@ -93,46 +108,62 @@ function updateMovingHolidayDates(year) {
   const dateFormatter = new Intl.DateTimeFormat('et-EE', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric',
     timeZone: 'UTC'
   });
 
-  const holidaysByName = new Map(
-    holidays.map(holiday => [holiday.name, holiday])
-  );
+  document.querySelectorAll('.püha-liikuv').forEach(card => card.remove());
 
-  document.querySelectorAll('[data-moving-holiday]').forEach(heading => {
-    const holiday = holidaysByName.get(heading.dataset.movingHoliday);
-    if (holiday) {
-      heading.textContent = `${holiday.name} — ${dateFormatter.format(holiday.rawDate)} (liikuv püha)`;
+  holidays.forEach(holiday => {
+    const month = holiday.rawDate.getUTCMonth() + 1;
+    const monthSection = document.querySelector(`details[data-month="${month}"]`);
+    if (!monthSection) {
+      return;
     }
+
+    const cards = monthSection.querySelector('.kastid');
+    if (!cards) {
+      return;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'pühad püha-liikuv';
+
+    const heading = document.createElement('h3');
+    heading.textContent = `${holiday.name} – ${dateFormatter.format(holiday.rawDate)}`;
+
+    const description = document.createElement('p');
+    description.textContent = holiday.description;
+
+    card.append(heading, description);
+    cards.appendChild(card);
   });
 }
 
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const yearSelect = document.getElementById('year-select');
-    if (!yearSelect) {
+
+    if (yearSelect) {
+      const firstYear = 2026;
+      const lastYear = 2099;
+      yearSelect.replaceChildren();
+
+      for (let year = firstYear; year <= lastYear; year += 1) {
+        const option = document.createElement('option');
+        option.value = String(year);
+        option.textContent = String(year);
+        yearSelect.appendChild(option);
+      }
+
+      yearSelect.value = String(firstYear);
+      updateMovingHolidayDates(firstYear);
+      yearSelect.addEventListener('change', () => {
+        updateMovingHolidayDates(Number(yearSelect.value));
+      });
       return;
     }
 
-    const firstYear = 2026;
-    const lastYear = 2099;
-    yearSelect.replaceChildren();
-
-    for (let year = firstYear; year <= lastYear; year += 1) {
-      const option = document.createElement('option');
-      option.value = String(year);
-      option.textContent = String(year);
-      yearSelect.appendChild(option);
-    }
-
-    yearSelect.value = String(firstYear);
-    updateMovingHolidayDates(firstYear);
-    yearSelect.addEventListener('change', () => {
-      const year = Number(yearSelect.value);
-      updateMovingHolidayDates(year);
-    });
+    updateMovingHolidayDates(new Date().getFullYear());
   });
 }
 
