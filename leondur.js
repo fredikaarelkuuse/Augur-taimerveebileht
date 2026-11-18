@@ -18,7 +18,7 @@ async function kaivitaloendur() {
   let praegu = new Date();
 
   // Loen failist andmed
-  let promise = await fetch("pyhad-iso.md");
+  let promise = await fetch("pyhad-ISO.md");
   let tekst = await promise.text();
 
   let read = tekst
