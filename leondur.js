@@ -8,12 +8,17 @@ import { getEstonianMovingHolidays } from './liikuvadkuupaevad.js';
 async function kaivitaloendur() {
 
   // Mis aasta praegu on
+  
   let see_aasta = new Date().getFullYear();
 
   let taielik_kuupaev = null;
   let lahim_pyha = null;
   let nimi = null;
   let suur_esitaht = null;
+  let toimub_täna = "Täna ei toimu ühtegi püha";
+
+  // Kutsume välja teise funktsiooni koodi selle aasta andmetega
+  let liikuvad = getEstonianMovingHolidays(see_aasta);
   
   // Mis kuupäev praegu on
   let praegu = new Date();
@@ -28,7 +33,6 @@ async function kaivitaloendur() {
 
   // Käib iga rea läbi, kus on uus püha ja kuupäev
   for (let rida of read) {
-
     // Teeb rea pooleks ja eraldab nime ja kuupäeva
     let [kuupaev, pyha] = rida.split("|")
     // Lisab kuupäevale ka aasta, et see oleks täielik
@@ -37,6 +41,11 @@ async function kaivitaloendur() {
     // Võimaldab selle hiljem välja kutsuda
     console.log(taielik_kuupaev, pyha);
     
+    // Kui püha algusest on möödas vähem kui 24h (86400000ms), siis on see täna
+    if ((lahim_pyha - praegu) > -86400000 && (lahim_pyha - praegu) <= 0) {
+      toimub_täna = pyha
+      document.getElementById("toimuvpyha").innerHTML = `Täna on ${toimub_täna}`
+    }
     // Kui lähim püha ei ole minevikus, lõhutakse tsükkel
     if (lahim_pyha > praegu) {
       // https://www.freecodecamp.org/news/javascript-capitalize-first-letter-of-word/
@@ -44,7 +53,19 @@ async function kaivitaloendur() {
       suur_esitaht = nimi.charAt(0).toUpperCase() + nimi.slice(1)
       break
     }
+    
   }
+
+  // Vaatame tsüklis kõik liikuvad pühad läbi
+  // Kui liikuv püha jääb tänase kuupäeva ja seni läheneva püha vahele, siis lähenev püha vahetub
+  for (let pyha of liikuvad) {
+    let liikuva_aeg = new Date(`${pyha.date}T00:00:00`).getTime();
+    if (liikuva_aeg > praegu.getTime() && liikuva_aeg < lahim_pyha) {
+      lahim_pyha = liikuva_aeg;
+      suur_esitaht = pyha.name;
+    }
+  }
+  
   document.getElementById("pyhanimi").innerHTML = suur_esitaht
   // Värskendab kella iga natukese aja tagant
   let x = setInterval(function() {
@@ -65,9 +86,12 @@ async function kaivitaloendur() {
     let minutes = Math.floor((vahe % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((vahe % (1000 * 60)) / 1000);
       
-    // Väljastab tulemuse elemendina mille id="taimer"
-    document.getElementById("taimer").innerHTML = days + "p " + hours + "t "
-    + minutes + "m " + seconds + "s";
-  }, 37); //Taimeri väärtust tuleb muuta
+    // Väljastab elemendid
+    document.getElementById("paev").innerHTML = days
+    document.getElementById("tund").innerHTML = hours
+    document.getElementById("minut").innerHTML = minutes
+    document.getElementById("sekund").innerHTML = seconds
+
+  }, 37); //Taimeri väärtust tuleb vb muuta
 }
 kaivitaloendur();

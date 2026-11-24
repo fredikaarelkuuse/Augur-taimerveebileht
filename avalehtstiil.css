@@ -1,17 +1,74 @@
-body {
-  background-color: lightblue;
-  margin: 0;                  
-  min-height: 100vh;          
-  display: flex;              
-  flex-direction: column;     
-  justify-content: center;    
-  align-items: center;        
-  text-align: center;         
+#pyhanimi {
+  text-align: center;
+  font-size: 4rem;
+  color: lightgreen;
+  margin-bottom: 50px; /*kontroll*/
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);/*kontroll*/
 }
 
-h1 {
-  color: black;
-  font-family: Arial, sans-serif;
-  font-size: 100px;
-  margin: 10px 0;     
+#toimuvpyha { /*Eelmisega võiks see koos olla*/ 
+  text-align: center;
+  font-size: 4rem;
+  color: lightgreen;
+  margin-bottom: 50px; /*kontroll*/
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 1);/*kontroll*/
+}
+
+.taimer {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.kast {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 4px 8px 4px rgba(0, 0, 0, 1); /*kontroll*/
+
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+}
+
+.number {
+  font-size: 5rem;
+  font-weight: bold;
+  color: white;
+  padding:25px
+}
+
+.silt{
+  font-size: 3rem;
+  color: white;
+  margin-top: 5px;
+  text-transform: uppercase; /*kontroll*/
+  /*letter-spacing: 5px;*/ /*kontroll*/
+  padding: 50px
+}
+
+.nupud {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 15px 25px;
+    box-sizing: border-box;
+}
+
+.nupp { /* Rasmuse koodist põhi*/
+    display: inline-flex;
+    justify-content: space-between;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 2.5rem;
+    text-decoration: none;
+}
+
+.nupp:hover, 
+.nupp:focus-visible {
+    background-color: rgba(0, 0, 0, 0.9);
 }

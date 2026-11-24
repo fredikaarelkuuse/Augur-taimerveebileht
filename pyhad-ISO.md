@@ -49,7 +49,6 @@
 10-31T00:00:00|midruskipäev (alternatiiv)
 11-02T00:00:00|hingedepäev
 11-10T00:00:00|mardipäev
-11-18T14:00:00|kärjest tuleb lahkuda
 11-25T00:00:00|kadripäev
 11-30T00:00:00|andresepäev
 12-06T00:00:00|nigulapäev
