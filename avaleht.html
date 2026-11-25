@@ -1,18 +1,48 @@
 <!DOCTYPE html>
 <html lang="et">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pühadetaimer</title>
-    <link rel="stylesheet" href="avalehtstiil.css">
-</head>
-<body>
-<h1 id="pyhanimi"></h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pühadetaimer</title>
+        <link rel="stylesheet" href="common.css">
+        <link rel="stylesheet" href="avalehtstiil.css">
+    </head>
 
-<h1 id="taimer"></h1>
-<script src="leondur.js"></script>
+     <body class="photo-page">
 
-<a href="infoleht.html"> Tutvu selle püha kommetega siit</a>
-<a href="nimekiri.html"> Loe teiste pühade kohta siit</a>
-</body>
+        <div class="nupud">
+            <a href="infoleht.html" id="kommete-link" class="nupp">← Tutvu selle püha kommetega</a>
+            <a href="nimekiri.html" class="nupp">Eesti rahvakalendri kuupäevad →</a>
+        </div>
+
+        <h1 id="pyhanimi"></h1>
+
+        <script type="module" src="leondur.js"></script>
+
+         <div class="taimer">
+
+            <div class="kast">
+                <span id="paev" class="number">--</span>
+                <span class="silt">päev</span>
+            </div>
+
+            <div class="kast">
+                <span id="tund" class="number">--</span>
+                <span class="silt">tund</span>
+            </div>
+
+            <div class="kast">
+                <span id="minut" class="number">--</span>
+                <span class="silt">minut</span>
+            </div>
+
+            <div class="kast">
+                <span id="sekund" class="number">--</span>
+                <span class="silt">sekund</span>
+            </div>
+
+         </div>
+        <h1 id="toimuvpyha"></h1>
+     </body>
+
 </html>

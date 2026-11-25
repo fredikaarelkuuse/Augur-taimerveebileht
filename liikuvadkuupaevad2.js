@@ -1,10 +1,4 @@
-/**
- * Arvutab Gregooriuse kalendri lihavõttepüha (ülestõusmispüha) kuupäeva.
- * Kasutab Meeus/Jones/Butcheri algoritmi.
- * 
- * @param {number} year Aasta number (nt 2026)
- * @returns {Date} Lihavõttepüha kuupäev (UTC)
- */
+/* Arvutab etteantud aasta lihavõttepüha kuupäeva */
 function getEasterDate(year) {
   const a = year % 19;
   const b = Math.floor(year / 100);
@@ -18,27 +12,20 @@ function getEasterDate(year) {
   const k = c % 4;
   const l = (32 + 2 * e + 2 * i - h - k) % 7;
   const m = Math.floor((a + 11 * h + 22 * l) / 451);
-  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1; // 0 = jaanuar, 3 = aprill
+  const month = Math.floor((h + l - 7 * m + 114) / 31) - 1;
   const day = ((h + l - 7 * m + 114) % 31) + 1;
 
   return new Date(Date.UTC(year, month, day));
 }
 
-/**
- * Abifunktsioon kuupäevale päevade lisamiseks või lahutamiseks.
- */
+/* Liidab või lahutab kuupäevale etteantud arvu päevi */
 function addDays(date, days) {
   const result = new Date(date);
   result.setUTCDate(result.getUTCDate() + days);
   return result;
 }
 
-/**
- * Leiab Eesti liikuvad pühad ja tähtpäevad antud aastal.
- * 
- * @param {number} year 
- * @returns {Array<{ name: string, description: string, date: string, rawDate: Date }>}
- */
+/* Koostab nimekirja Eesti liikuvatest pühadest antud aastal */
 function getEstonianMovingHolidays(year) {
   const easter = getEasterDate(year);
 
@@ -103,6 +90,7 @@ function getEstonianMovingHolidays(year) {
   }));
 }
 
+/* Lisab liikuvate pühade kaardid õigete kuude alla */
 function updateMovingHolidayDates(year) {
   const holidays = getEstonianMovingHolidays(year);
   const dateFormatter = new Intl.DateTimeFormat('et-EE', {
@@ -116,14 +104,10 @@ function updateMovingHolidayDates(year) {
   holidays.forEach(holiday => {
     const month = holiday.rawDate.getUTCMonth() + 1;
     const monthSection = document.querySelector(`details[data-month="${month}"]`);
-    if (!monthSection) {
-      return;
-    }
+    if (!monthSection) return;
 
     const cards = monthSection.querySelector('.kastid');
-    if (!cards) {
-      return;
-    }
+    if (!cards) return;
 
     const card = document.createElement('div');
     card.className = 'pühad püha-liikuv';
@@ -139,6 +123,43 @@ function updateMovingHolidayDates(year) {
   });
 }
 
+/* Loeb URL-ist avalehelt saadetud püha nime ja kuvab selle lehe ülaosas */
+function highlightHolidayFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const otsitavPyha = params.get('pyha');
+
+  if (!otsitavPyha) return;
+
+  const puhastatudNimi = otsitavPyha.trim().toLowerCase();
+  const koikPyhad = document.querySelectorAll('.pühad');
+  const ylemineKast = document.getElementById('esiletostetud-pyha');
+
+  if (!ylemineKast) {
+    console.warn('Puudub element id="esiletostetud-pyha"');
+    return;
+  }
+
+  for (const kast of koikPyhad) {
+    const pealkiri = kast.querySelector('h3');
+    if (!pealkiri) continue;
+
+    const pealkiriTekst = pealkiri.textContent.toLowerCase();
+    const ainultNimi = pealkiriTekst.split(/[-–]/)[0].trim();
+
+    if (pealkiriTekst.includes(puhastatudNimi) || puhastatudNimi.includes(ainultNimi)) {
+      const koopia = kast.cloneNode(true);
+      koopia.classList.add('esile-tostetud');
+
+      ylemineKast.replaceChildren(koopia);
+      ylemineKast.hidden = false;
+      return;
+    }
+  }
+
+  console.warn('Ei leidnud alamlehelt püha nimega:', otsitavPyha);
+}
+
+/* Käivitab skriptid pärast lehe laadimist */
 if (typeof document !== 'undefined') {
   document.addEventListener('DOMContentLoaded', () => {
     const yearSelect = document.getElementById('year-select');
@@ -157,6 +178,8 @@ if (typeof document !== 'undefined') {
 
       yearSelect.value = String(firstYear);
       updateMovingHolidayDates(firstYear);
+      highlightHolidayFromUrl();
+
       yearSelect.addEventListener('change', () => {
         updateMovingHolidayDates(Number(yearSelect.value));
       });
@@ -164,10 +187,11 @@ if (typeof document !== 'undefined') {
     }
 
     updateMovingHolidayDates(new Date().getFullYear());
+    highlightHolidayFromUrl();
   });
 }
 
-// Mooduli eksport Node.js keskkonnas (vajadusel)
+/* Eksport teiste failide või testide jaoks */
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = { getEasterDate, getEstonianMovingHolidays };
 }
