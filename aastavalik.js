@@ -10,7 +10,8 @@ if (typeof document !== 'undefined') {
       yearOptions instanceof HTMLSelectElement &&
       yearListToggle instanceof HTMLButtonElement
     ) {
-      const updateYearOptions = year => {
+      /* Koostab valitud aasta ümber 100-aastase mineviku ja tuleviku valikuloendi. */
+      const uuendaAastaloendit = year => {
         const firstYear = Math.max(1000, year - 100);
         const lastYear = Math.min(9999, year + 100);
         yearOptions.replaceChildren();
@@ -26,50 +27,64 @@ if (typeof document !== 'undefined') {
       };
 
       yearInput.value = String(currentYear);
-      updateYearOptions(currentYear);
-      renderCalendar(currentYear);
+      uuendaAastaloendit(currentYear);
+      kuvaKalender(currentYear);
 
-      const updateCalendar = () => {
+      /* Uuendab kalendri, kui sisestatud aasta on lubatud vahemikus. */
+      const uuendaKalendrit = () => {
         if (!yearInput.reportValidity()) {
           return;
         }
 
         const year = Number(yearInput.value);
-        renderCalendar(year);
-        updateYearOptions(year);
+        kuvaKalender(year);
+        uuendaAastaloendit(year);
       };
 
+      /* Nihutab soovitusloendit sisestuse ajal koos aasta väärtusega. */
       yearInput.addEventListener('input', () => {
         if (yearInput.value !== '' && yearInput.validity.valid) {
-          updateYearOptions(Number(yearInput.value));
+          uuendaAastaloendit(Number(yearInput.value));
         }
       });
-      yearInput.addEventListener('change', updateCalendar);
+      yearInput.addEventListener('change', uuendaKalendrit);
       yearInput.addEventListener('keydown', event => {
         if (event.key === 'Enter') {
-          updateCalendar();
+          uuendaKalendrit();
         }
       });
 
+      /* Avab loendi alati nähtava, keritava valikumenüüna. */
       yearListToggle.addEventListener('click', () => {
-        yearOptions.hidden = !yearOptions.hidden;
+        const opening = yearOptions.hidden;
+        yearOptions.hidden = !opening;
         yearListToggle.setAttribute('aria-expanded', String(!yearOptions.hidden));
-        if (!yearOptions.hidden) {
+        if (opening) {
           yearOptions.value = yearInput.value;
           yearOptions.focus();
         }
       });
 
+      /* Rakendab loendist valitud aasta ja sulgeb loendi. */
       yearOptions.addEventListener('change', () => {
         yearInput.value = yearOptions.value;
         const year = Number(yearOptions.value);
-        renderCalendar(year);
-        updateYearOptions(year);
+        kuvaKalender(year);
+        uuendaAastaloendit(year);
         yearOptions.hidden = true;
         yearListToggle.setAttribute('aria-expanded', 'false');
         yearListToggle.focus();
       });
 
+      /* Sulgeb loendi, kui kasutaja vajutab sellest väljapoole. */
+      document.addEventListener('click', event => {
+        if (!event.target.closest('.year-picker') && !yearOptions.hidden) {
+          yearOptions.hidden = true;
+          yearListToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      /* Sulgeb loendi Escape-klahviga ja tagastab fookuse avamisnupule. */
       yearOptions.addEventListener('keydown', event => {
         if (event.key === 'Escape') {
           yearOptions.hidden = true;
@@ -78,7 +93,7 @@ if (typeof document !== 'undefined') {
         }
       });
     } else {
-      renderCalendar(currentYear);
+      kuvaKalender(currentYear);
     }
   });
 }
