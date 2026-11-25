@@ -1,52 +1,78 @@
+/* Lehe üldine taust, kirjatüüp ja välisvahed */
 body { 
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Estonian_Open_Air_Museum.001.JPG?utm_source=et.wikipedia.org&utm_campaign=index&utm_content=original");  
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    margin: 0;
-    padding: 20px;
+    background-size: cover;             /* Katab terve ekraani proportsioone rikkumata */
+    background-repeat: no-repeat;       /* Ei korda taustapilti */
+    background-position: center;        /* Tsentreerib taustapildi */
+    background-attachment: fixed;       /* Hoiab taustapildi kerimisel paigal */
+    color: white;                       /* Vaikimisi valge tekstivärv */
+    font-family: 'Times New Roman', Times, serif; /* Kirjatüüp */
+    margin: 0;                          /* Eemaldab brauseri vaikimisi välisvahe */
+    padding: 20px;                      /* Lisab sisevahe lehe servadesse */
 }
 
+/* Pealkirja (H1) kujundus */
 h1 { 
     color: lightgreen;
     text-align: center;
-    background-color: rgba(169, 169, 169, 0.5);
+    background-color: rgba(169, 169, 169, 0.5); /* Poolläbipaistev hall taust */
     padding: 15px;
-    border-radius: 6px;
+    border-radius: 6px;                 /* Ümarad nurgad */
     margin-top: 0;
 }
 
+/* Päise konteiner, et tagasi-nuppu saaks selle suhtes paigutada */
 header {
     position: relative;
-    padding-top: 48px;
+    padding-top: 48px;                  /* Jätab ülevale ruumi tagasi-nupule */
 }
 
+/* Avalehele tagasi viiva nupu kujundus */
 .tagasi-nupp {
-    position: absolute;
+    position: absolute;                 /* Paigutab nupu päise paremasse ülanurka */
     top: 0;
     right: 0;
     color: white;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px;
     border-radius: 6px;
-    text-decoration: none;
+    text-decoration: none;              /* Eemaldab lingi allajoonimise */
 }
 
+/* Tagasi-nupu taustavärv hiirega peale liikudes või klaviatuuriga valides */
 .tagasi-nupp:hover,
 .tagasi-nupp:focus-visible {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
+/* Põhisisu paigutus: 3 võrdse laiusega veergu (CSS Grid) */
 main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    align-items: start;
+    gap: 20px;                          /* Vahe ruudustiku elementide vahel */
+    align-items: start;                 /* Joondab kastid ülaserva järgi */
 }
 
+/* Avalehelt kaasa toodud esiletõstetud püha plokk lehe ülaosas */
+#esiletostetud-pyha {
+    grid-column: 1 / -1;                /* Venib üle kõigi 3 veeru, et kuud algaksid altpoolt */
+    max-width: 600px;                   /* Piirab kasti maksimaalset laiust */
+    width: 100%;
+    margin: 0 auto 10px auto;           /* Tsentreerib kasti horisontaalselt keskele */
+}
+
+/* Peidab esiletõstetud püha ploki, kui lehele tullakse otse ilma lingita */
+#esiletostetud-pyha[hidden] {
+    display: none;
+}
+
+/* Esiletõstetud püha kaardi laius ja roheline raam */
+#esiletostetud-pyha .pühad {
+    width: 100%;
+    border: 3px solid lightgreen;
+}
+
+/* Ühe kuu lahtikäiv plokk (<details>) */
 details.kuu {
     margin-bottom: 0;
     background-color: rgba(0, 0, 0, 0.4);
@@ -55,98 +81,107 @@ details.kuu {
     border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-
+/* Kui kuu plokk on lahti klõpsatud, venib see üle kõigi 3 veeru */
 details.kuu[open] {
     grid-column: 1 / -1;
 }
 
+/* Kuu päise (<summary>) klõpsatav ala ja vaikimisi noole eemaldamine */
 .kuu summary {
     cursor: pointer;
     list-style: none;
 }
 
+/* Peidab Safari/Chrome'i vaikimisi kolmnurga <summary> eest */
 .kuu summary::-webkit-details-marker {
     display: none;
 }
 
+/* Kuu pealkirja (H2) kujundus */
 .kuu h2 {
     color: #4fff72;
     background-color: rgba(0, 0, 0, 0.7);
     padding: 10px 15px;
-    border-left: 5px solid lightgreen;
+    border-left: 5px solid lightgreen;  /* Roheline püstjoon pealkirja vasakul serval */
     border-radius: 4px 4px 0 0;
     margin: 0;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between;     /* Lükkab nime vasakule ja +/- märgi paremale */
     align-items: center;
     font-size: 1.2rem;
 }
 
-
+/* Lisab suletud kuu pealkirja paremasse serva "+" märgi */
 .kuu summary h2::after {
     content: "+";
     color: lightgreen;
     font-weight: bold;
 }
 
+/* Muudab avatud kuu pealkirja märgi "−" märgiks */
 .kuu[open] summary h2::after {
     content: "−";
 }
 
-
+/* Kuu sees olevate pühade kaartide paindlik paigutus (Flexbox) */
 .kastid {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: wrap;                    /* Murrab kaardid uuele reale, kui ruum saab otsa */
     gap: 15px;
     padding: 15px;
 }
 
+/* Üksiku püha kaardi kujundus */
 .pühad {
     background-color: rgba(169, 169, 169, 0.982);
     border: 2px solid white;
     border-radius: 6px;
     padding: 12px;
-    width: 280px;
-    flex-grow: 1;
-    box-sizing: border-box;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    width: 280px;                       /* Kaardi baaslaius */
+    flex-grow: 1;                       /* Venitab kaardid rea täitmiseks ühtlaseks */
+    box-sizing: border-box;             /* Arvestab äärised ja sisevahed laiuse sisse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); /* Vari kaardi all */
     color: #ffffff;
 }
 
+/* Püha nime ja kuupäeva (H3) kujundus kaardi sees */
 .pühad h3 {
     color: black;
     margin-top: 0;
     margin-bottom: 8px;
     font-size: 1.1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3); /* Peenike eraldusjoon pealkirja all */
     padding-bottom: 5px;
 }
 
+/* Alapealkirjade (nt "Näärikombed:") kujundus */
 .pühad h4 {
     color: #ffffaa;
     margin-top: 10px;
     margin-bottom: 5px;
 }
 
+/* Püha kirjelduse teksti kujundus */
 .pühad p {
-    line-height: 1.4;
+    line-height: 1.4;                   /* Reavahe parema loetavuse jaoks */
     margin: 5px 0;
     font-size: 0.9rem;
 }
 
-
+/* Tahvelarvuti vaade (ekraan kuni 1024px): muudab ruudustiku 2-veeruliseks */
 @media (max-width: 1024px) {
     main {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Mobiilivaade (ekraan kuni 650px): muudab ruudustiku 1-veeruliseks */
 @media (max-width: 650px) {
     main {
         grid-template-columns: 1fr;
     }
     
     .pühad {
-        width: 100%;
+        width: 100%;                    /* Kaart võtab mobiilis terve rea laiuse */
     }
 }
